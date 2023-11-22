@@ -24,11 +24,11 @@
 .PARAMETER AllArtifacts
 	
 .EXAMPLE
-	Run script from Microsoft Defender for Endpoint Live Response connection:	
-    	C:\> run WBAE.ps1 -parameters ""-Chrome"" -""History""
+	Run script from Microsoft Defender for Endpoint Live Response connection:
+ 	C:\> run WBAE.ps1 -parameters ""-Chrome"" -""History""
 .EXAMPLE 
-	Run script on local machine:	
-	C:\> ./WBAE.ps1 -Chrome -History
+	Run script on local machine:
+ 	C:\> ./WBAE.ps1 -Chrome -History
 .NOTES
 	This is still a work in progress script. At the moment it only supports pulling browser history from Edge, Firefox, and Chrome but further functionality will be added
 #>
