@@ -13,12 +13,11 @@
 .PARAMETER Chrome
 	Sets script to only collect specified artifacts from Google Chrome.
 .PARAMETER Edge
-    Sets script to only collect specified artifacts from Microsoft Edge.
+	Sets script to only collect specified artifacts from Microsoft Edge.
 .PARAMETER Firefox
 	Sets script to only collect specified artifacts from Mozilla Firefox.
 .PARAMETER History
 	Collects browser history of the specified web browser
-
 # WORK IN PROGRESS PARAMETERS
 .PARAMETER Cookies
 .PARAMETER Extensions
@@ -26,34 +25,32 @@
 	
 .EXAMPLE
 	Run script from Microsoft Defender for Endpoint Live Response connection:	
-    C:\> run WBAE.ps1 -parameters ""-Chrome"" -""History""
-	
+    	C:\> run WBAE.ps1 -parameters ""-Chrome"" -""History""
 .EXAMPLE 
 	Run script on local machine:	
 	C:\> ./WBAE.ps1 -Chrome -History
-
 .NOTES
-   
+	This is still a work in progress script. At the moment it only supports pulling browser history from Edge, Firefox, and Chrome but further functionality will be added
 #>
 
-param
+param 
 (
     [Parameter(HelpMessage = 'Collect browser artifacts from Google Chrome')]
     [ValidateNotNullOrEmpty()]
     [Alias('C')]
     [switch]$Chrome,
-	
-	[Parameter(HelpMessage = 'Collect browser artifacts from Microsoft Edge')]
+    
+    [Parameter(HelpMessage = 'Collect browser artifacts from Microsoft Edge')]
     [ValidateNotNullOrEmpty()]
     [Alias('E')]
     [switch]$Edge,
-	
-	[Parameter(HelpMessage = 'Collect browser artifacts from Mozilla Firefox')]
+    
+    [Parameter(HelpMessage = 'Collect browser artifacts from Mozilla Firefox')]
     [ValidateNotNullOrEmpty()]
     [Alias('F')]
     [switch]$Firefox,
-	
-	[Parameter(HelpMessage = 'Collect browser history of the specified web browser')]
+    
+    [Parameter(HelpMessage = 'Collect browser history of the specified web browser')]
     [ValidateNotNullOrEmpty()]
     [Alias('H')]
     [switch]$History
@@ -102,9 +99,9 @@ function chromeHistory
 	
     if (-not (Test-Path -Path $defaultChromePath))
     {
-		Write-Host "ERROR: The default file path for Google Chrome cannot be found!"
-		Write-Host "Canceling execution..."
-		return
+	Write-Host "ERROR: The default file path for Google Chrome cannot be found!"
+	Write-Host "Canceling execution..."
+	return
     } 
     else 
     {
@@ -125,9 +122,9 @@ function firefoxHistory
 	
     if (-not (Test-Path -Path $defaultFirefoxPath))
     {
-		Write-Host "ERROR: The default file path for Mozilla Firefox cannot be found!"
-		Write-Host "Canceling execution..."
-		return
+	Write-Host "ERROR: The default file path for Mozilla Firefox cannot be found!"
+	Write-Host "Canceling execution..."
+	return
     } 
     else 
     {
@@ -146,9 +143,9 @@ function edgeHistory
 
     if (-not (Test-Path -Path $defaultEdgePath))
     {
-		Write-Host "ERROR: The default file path for Microsoft Edge cannot be found!"
-		Write-Host "Canceling execution..."
-		return
+	Write-Host "ERROR: The default file path for Microsoft Edge cannot be found!"
+	Write-Host "Canceling execution..."
+	return
     } 
     else 
     {
