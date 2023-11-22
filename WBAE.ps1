@@ -9,7 +9,7 @@
 
 <#
 .DESCRIPTION
-    Copies locally stored web browser artifacts and dumps them in the Windows ATP downloads folder.
+	Copies locally stored web browser artifacts and dumps them in the Windows ATP downloads folder.
 .PARAMETER Chrome
 	Sets script to only collect specified artifacts from Google Chrome.
 .PARAMETER Edge
