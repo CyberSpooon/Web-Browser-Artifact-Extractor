@@ -1,6 +1,5 @@
 ##################################################
 # Script Title: Web Browser Artifact Extractor
-# Script File Name: 
 # Author: CyberSpooon 
 # Version: 1.0
 # Date Created: 09/06/2023
