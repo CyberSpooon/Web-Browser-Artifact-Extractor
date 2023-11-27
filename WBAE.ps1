@@ -98,6 +98,7 @@ function chromeHistory
     if (-not (Test-Path -Path $defaultChromePath))
     {
 	Write-Host "ERROR: The default file path for Google Chrome cannot be found!"
+ 	Write-Host "The specified path was: $($defaultChromePath)"
 	Write-Host "Canceling execution..."
 	return
     } 
@@ -123,6 +124,7 @@ function firefoxHistory
     if (-not (Test-Path -Path $defaultFirefoxPath))
     {
 	Write-Host "ERROR: The default file path for Mozilla Firefox cannot be found!"
+ 	Write-Host "The specified path was: $($defaultFirefoxPath)"
 	Write-Host "Canceling execution..."
 	return
     } 
@@ -147,6 +149,7 @@ function edgeHistory
     if (-not (Test-Path -Path $defaultEdgePath))
     {
 	Write-Host "ERROR: The default file path for Microsoft Edge cannot be found!"
+ 	Write-Host "The specified path was: $($defaultEdgePath)"
 	Write-Host "Canceling execution..."
 	return
     } 
