@@ -103,7 +103,7 @@ function chromeHistory
     } 
     else 
     {
-        Write-Host "Copying Chrome history..."
+        Write-Host "Copying Chrome history from $($defaultChromePath)..."
         Start-Sleep -Seconds 1.5
         [void] (New-Item -Path "C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\$($hostname)_$($datetime)" -Name "Chrome" -ItemType "directory")
         Copy-Item $defaultChromeHistoryPath -Destination "$($MDEDownloadsDir)\Chrome"
@@ -128,7 +128,7 @@ function firefoxHistory
     } 
     else 
     {
-        Write-Host "Copying Firefox history..."
+        Write-Host "Copying Firefox history from $($defaultFirefoxPath)..."
         Start-Sleep -Seconds 1.5
         [void] (New-Item -Path "C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\$($hostname)_$($datetime)" -Name "Firefox" -ItemType "directory")
         Copy-Item -Path $defaultFirefoxHistoryPath -Destination "$($MDEDownloadsDir)\Firefox"
@@ -152,7 +152,7 @@ function edgeHistory
     } 
     else 
     {
-        Write-Host "Copying Edge history..."
+        Write-Host "Copying Edge history from $($defaultEdgePath)..."
         Start-Sleep -Seconds 1.5
         [void] (New-Item -Path "C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\$($hostname)_$($datetime)" -Name "Edge" -ItemType "directory")
         Copy-Item $defaultEdgeHistoryPath -Destination "$($MDEDownloadsDir)\Edge"
