@@ -1,5 +1,6 @@
 # Web-Browser-Artifact-Extractor
 Here’s a quick and dirty powershell script to extract web browser artifacts from Google Chrome, Mozilla Firefox, and Microsoft Edge for later analysis.
+
 NOTE: This script currently only collects browser history artifacts from Edge, Chrome, and Firefox. Further functionality will be added. This script only works on Windows machines.
 
 The below tools can be used to view collected artifacts:
