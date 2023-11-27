@@ -117,7 +117,6 @@ function chromeHistory
 function firefoxHistory
 {
 	# Mozilla Firefox browser artifact paths
-	# $defaultFirefoxPath = "C:\Users\$($username)\AppData\Roaming\Mozilla\Firefox\Profiles" -Include "default-release"
     $defaultFirefoxPath = resolve-path -Path "C:\Users\$($username)\AppData\Roaming\Mozilla\Firefox\Profiles\*" | where-object Path -match "default-release"
 	$defaultFirefoxHistoryPath = "$($defaultFirefoxPath)\places.sqlite"
 	# $defaultFirefoxHistoryPathMacOS = 
