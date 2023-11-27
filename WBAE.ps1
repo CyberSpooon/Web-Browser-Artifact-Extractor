@@ -69,9 +69,8 @@ $username = $domainUsername.split('\')[1]
 # Get date/time info
 $datetime = $(Get-Date -Format 'yyyy-MM-dd_HHmm')
 
-# Declare output path to MDE downloads directory
-$MDEDownloadsDir = "C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\$($hostname)_$($datetime)\"
-# "C:\Users\Alden.James\ps_script_testing\$($hostname)_$($datetime)\"
+# Declare output path to MDE downloads directory and create it
+$MDEDownloadsDir = "C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\$($hostname)_$($datetime)"
 
 Write-Host "==============================================================================================================="
 Write-Host "                _____     __           ____                        _        _      __    __                    "
@@ -106,8 +105,11 @@ function chromeHistory
     else 
     {
         Write-Host "Copying Chrome history..."
-        Copy-Item -Path $defaultChromeHistoryPath -Destination $MDEDownloadsDir -Recurse -Force
+        Start-Sleep -Seconds 1.5
+        [void] (New-Item -Path "C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\$($hostname)_$($datetime)" -Name "Chrome" -ItemType "directory")
+        Copy-Item $defaultChromeHistoryPath -Destination "$($MDEDownloadsDir)\Chrome"
         Write-Host "Chrome browser history copied to:" $MDEDownloadsDir
+        Write-Host ""
     }
 }
 
@@ -115,9 +117,9 @@ function chromeHistory
 function firefoxHistory
 {
 	# Mozilla Firefox browser artifact paths
-	$defaultFirefoxPath = C:\Users\$($username)\AppData\Roaming\Mozilla\Firefox\Profiles\*.default-release
-	# there also might be a second 'default-release-*' dir" "~/AppData\Roaming\Mozilla\Firefox\Profiles\*.default-release-1"
-	$defaultFirefoxHistoryPath = C:\Users\$($username)\AppData\Roaming\Mozilla\Firefox\Profiles\*.default-release\places.sqlite
+	# $defaultFirefoxPath = "C:\Users\$($username)\AppData\Roaming\Mozilla\Firefox\Profiles" -Include "default-release"
+    $defaultFirefoxPath = resolve-path -Path "C:\Users\$($username)\AppData\Roaming\Mozilla\Firefox\Profiles\*" | where-object Path -match "default-release"
+	$defaultFirefoxHistoryPath = "$($defaultFirefoxPath)\places.sqlite"
 	# $defaultFirefoxHistoryPathMacOS = 
 	
     if (-not (Test-Path -Path $defaultFirefoxPath))
@@ -129,8 +131,11 @@ function firefoxHistory
     else 
     {
         Write-Host "Copying Firefox history..."
-        Copy-Item -Path $defaultFirefoxHistoryPath -Destination $MDEDownloadsDir -Recurse -Force
+        Start-Sleep -Seconds 1.5
+        [void] (New-Item -Path "C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\$($hostname)_$($datetime)" -Name "Firefox" -ItemType "directory")
+        Copy-Item -Path $defaultFirefoxHistoryPath -Destination "$($MDEDownloadsDir)\Firefox"
         Write-Host "Firefox browser history copied to:" $MDEDownloadsDir
+        Write-Host ""
     }
 }
 
@@ -150,23 +155,28 @@ function edgeHistory
     else 
     {
         Write-Host "Copying Edge history..."
-        Copy-Item -Path $defaultEdgeHistoryPath -Destination $MDEDownloadsDir -Recurse -Force
+        Start-Sleep -Seconds 1.5
+        [void] (New-Item -Path "C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\$($hostname)_$($datetime)" -Name "Edge" -ItemType "directory")
+        Copy-Item $defaultEdgeHistoryPath -Destination "$($MDEDownloadsDir)\Edge"
         Write-Host "Edge browser history copied to:" $MDEDownloadsDir
+        Write-Host ""
     }
 }
 
 # ---------------------------------------------------------------------
 # Main ----------------------------------------------------------------
 # ---------------------------------------------------------------------
-if (($Chrome) and ($History))
+if (($Chrome) -and ($History))
 {
 	chromeHistory
 }
-elseif ((Firefox and ($History))
+
+if (($Firefox) -and ($History))
 {
 	firefoxHistory
 }
-elseif (($Edge) and ($History))
+
+if (($Edge) -and ($History))
 {
 	edgeHistory
 }
