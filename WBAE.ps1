@@ -62,8 +62,8 @@ param
 $hostname = [System.Net.Dns]::GetHostName()
 
 # Get logged on user
-$domainUsername = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-$username = $domainUsername.split('\')[1]
+# $domainUsername = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+# $username = $domainUsername.split('\')[1]
 
 # Get date/time info
 $datetime = $(Get-Date -Format 'yyyy-MM-dd_HHmm')
@@ -91,8 +91,8 @@ Write-Host "                                                                    
 function chromeHistory
 {
 	# Google Chrome browser artifact paths
-	$defaultChromePath = "C:\Users\$($username)\AppData\Local\Google\Chrome\User Data\Default"
-	$defaultChromeHistoryPath = "C:\Users\$($username)\AppData\Local\Google\Chrome\User Data\Default\History"
+	$defaultChromePath = Resolve-Path "C:\Users\*\AppData\Local\Google\Chrome\User Data\Default"
+	$defaultChromeHistoryPath = "$(defaultChromePath)\History"
 	# $defaultChromeHistoryPathMacOS = "C:\Users\<Your Username>\AppData\Local\Google\Chrome\User Data\Default"
 	
     if (-not (Test-Path -Path $defaultChromePath))
@@ -117,7 +117,7 @@ function chromeHistory
 function firefoxHistory
 {
 	# Mozilla Firefox browser artifact paths
- 	$defaultFirefoxPath = resolve-path -Path "C:\Users\$($username)\AppData\Roaming\Mozilla\Firefox\Profiles\*" | where-object Path -match "default-release"
+ 	$defaultFirefoxPath = resolve-path -Path "C:\Users\*\AppData\Roaming\Mozilla\Firefox\Profiles\*" | where-object Path -match "default-release"
 	$defaultFirefoxHistoryPath = "$($defaultFirefoxPath)\places.sqlite"
 	# $defaultFirefoxHistoryPathMacOS = 
 	
@@ -143,8 +143,8 @@ function firefoxHistory
 function edgeHistory
 {
 	# Microsoft Edge browser artifact paths
-	$defaultEdgePath = "C:\Users\$($username)\AppData\Local\Microsoft\Edge\User Data\Default"
-	$defaultEdgeHistoryPath = "C:\Users\$($username)\AppData\Local\Microsoft\Edge\User Data\Default\History"
+	$defaultEdgePath = Resolve-Path "C:\Users\*\AppData\Local\Microsoft\Edge\User Data\Default"
+	$defaultEdgeHistoryPath = "$($defaultEdgePath)\History"
 
     if (-not (Test-Path -Path $defaultEdgePath))
     {
