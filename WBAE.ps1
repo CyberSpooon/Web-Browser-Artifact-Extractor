@@ -92,7 +92,7 @@ function chromeHistory
 {
 	# Google Chrome browser artifact paths
 	$defaultChromePath = Resolve-Path "C:\Users\*\AppData\Local\Google\Chrome\User Data\Default"
-	$defaultChromeHistoryPath = "$(defaultChromePath)\History"
+	$defaultChromeHistoryPath = "$($defaultChromePath)\History"
 	# $defaultChromeHistoryPathMacOS = "C:\Users\<Your Username>\AppData\Local\Google\Chrome\User Data\Default"
 	
     if (-not (Test-Path -Path $defaultChromePath))
