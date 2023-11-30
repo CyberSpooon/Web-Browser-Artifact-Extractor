@@ -108,7 +108,9 @@ function chromeHistory
         Start-Sleep -Seconds 1.5
         [void] (New-Item -Path "C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\$($hostname)_$($datetime)" -Name "Chrome" -ItemType "directory")
         Copy-Item $defaultChromeHistoryPath -Destination "$($MDEDownloadsDir)\Chrome"
-        Write-Host "Chrome browser history copied to:" $MDEDownloadsDir
+        Write-Host "Chrome browser history copied to: $MDEDownloadsDir\Chrome"
+	Write-Host "Run the following command to collect the file:"
+ 	Write-Host "getfile `"$($MDEDownloadsDir)\Chrome\History`""
         Write-Host ""
     }
 }
@@ -135,7 +137,9 @@ function firefoxHistory
         Start-Sleep -Seconds 1.5
         [void] (New-Item -Path "C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\$($hostname)_$($datetime)" -Name "Firefox" -ItemType "directory")
         Copy-Item -Path $defaultFirefoxHistoryPath -Destination "$($MDEDownloadsDir)\Firefox"
-        Write-Host "Firefox browser history copied to:" $MDEDownloadsDir
+        Write-Host "Firefox browser history copied to: $MDEDownloadsDir\Firefox"
+	Write-Host "Run the following command to collect the file:"
+ 	Write-Host "getfile `"$($MDEDownloadsDir)\Firefox\places.sqlite`""
         Write-Host ""
     }
 }
@@ -144,7 +148,7 @@ function firefoxHistory
 function edgeHistory
 {
 	# Microsoft Edge browser artifact paths
-	$defaultEdgePath = Resolve-Path -Path "C:\Users\*\AppData\Local\Microsoft\Edge\User Data\Default"
+	$defaultEdgePath = Resolve-Path -Path "C:\Users\*\AppData\Local\Microsoft\Edge\User Data\Default" | Where-Object Path -NotMatch "Administrator"
 	$defaultEdgeHistoryPath = Resolve-Path -Path "C:\Users\*\AppData\Local\Microsoft\Edge\User Data\Default\History"
 
     if (-not (Test-Path -Path $defaultEdgePath))
@@ -160,7 +164,9 @@ function edgeHistory
         Start-Sleep -Seconds 1.5
         [void] (New-Item -Path "C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Downloads\$($hostname)_$($datetime)" -Name "Edge" -ItemType "directory")
         Copy-Item $defaultEdgeHistoryPath -Destination "$($MDEDownloadsDir)\Edge"
-        Write-Host "Edge browser history copied to:" $MDEDownloadsDir
+        Write-Host "Edge browser history copied to: $($MDEDownloadsDir)\Edge"
+	Write-Host "Run the following command to collect the file:"
+ 	Write-Host "getfile `"$($MDEDownloadsDir)\Edge\History`""
         Write-Host ""
     }
 }
