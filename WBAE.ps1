@@ -117,8 +117,9 @@ function chromeHistory
 function firefoxHistory
 {
 	# Mozilla Firefox browser artifact paths
- 	$defaultFirefoxPath = Resolve-Path -Path "C:\Users\*\AppData\Roaming\Mozilla\Firefox\Profiles\*" | where-object Path -match "default-release"
-	$defaultFirefoxHistoryPath = Resolve-Path -Path "$($defaultFirefoxPath)\places.sqlite"
+  	$defaultFirefoxPath = Get-ChildItem C:\Users\*\AppData\Roaming\Mozilla\Firefox\Profiles\* | sort LastWriteTime | select -last 1
+   	$newestFirefoxPath = ($defaultFirefoxPath.FullName)
+    	$defaultFirefoxHistoryPath = Resolve-Path -Path "$($newestFirefoxPath)\places.sqlite"
 	# $defaultFirefoxHistoryPathMacOS = 
 	
     if (-not (Test-Path -Path $defaultFirefoxPath))
