@@ -91,8 +91,8 @@ Write-Host "                                                                    
 function chromeHistory
 {
 	# Google Chrome browser artifact paths
-	$defaultChromePath = Resolve-Path "C:\Users\*\AppData\Local\Google\Chrome\User Data\Default"
-	$defaultChromeHistoryPath = "$($defaultChromePath)\History"
+	$defaultChromePath = Resolve-Path -Path "C:\Users\*\AppData\Local\Google\Chrome\User Data\Default"
+	$defaultChromeHistoryPath = Resolve-Path -Path "C:\Users\*\AppData\Local\Google\Chrome\User Data\Default\History"
 	# $defaultChromeHistoryPathMacOS = "C:\Users\<Your Username>\AppData\Local\Google\Chrome\User Data\Default"
 	
     if (-not (Test-Path -Path $defaultChromePath))
@@ -117,8 +117,8 @@ function chromeHistory
 function firefoxHistory
 {
 	# Mozilla Firefox browser artifact paths
- 	$defaultFirefoxPath = resolve-path -Path "C:\Users\*\AppData\Roaming\Mozilla\Firefox\Profiles\*" | where-object Path -match "default-release"
-	$defaultFirefoxHistoryPath = "$($defaultFirefoxPath)\places.sqlite"
+ 	$defaultFirefoxPath = Resolve-Path -Path "C:\Users\*\AppData\Roaming\Mozilla\Firefox\Profiles\*" | where-object Path -match "default-release"
+	$defaultFirefoxHistoryPath = Resolve-Path -Path "$($defaultFirefoxPath)\places.sqlite"
 	# $defaultFirefoxHistoryPathMacOS = 
 	
     if (-not (Test-Path -Path $defaultFirefoxPath))
@@ -143,8 +143,8 @@ function firefoxHistory
 function edgeHistory
 {
 	# Microsoft Edge browser artifact paths
-	$defaultEdgePath = Resolve-Path "C:\Users\*\AppData\Local\Microsoft\Edge\User Data\Default"
-	$defaultEdgeHistoryPath = "$($defaultEdgePath)\History"
+	$defaultEdgePath = Resolve-Path -Path "C:\Users\*\AppData\Local\Microsoft\Edge\User Data\Default"
+	$defaultEdgeHistoryPath = Resolve-Path -Path "C:\Users\*\AppData\Local\Microsoft\Edge\User Data\Default\History"
 
     if (-not (Test-Path -Path $defaultEdgePath))
     {
