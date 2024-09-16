@@ -13,6 +13,6 @@ The below tools can be used to view collected artifacts:
 NOTE: Since WebKit/Chrome records timestamps as the number of microseconds since January 1, 1601 instead of Epoch time, the timestamps for WebKit/Chrome based browsers will need to be converted. Use https://www.epochconverter.com/webkit or the SQLite query listed below for the conversion:
 
 ```
-SELECT id,url,title,visit_count,typed_count,last_visit_time,hidden, (datetime((last_visit_time /1000000)-11644473600, 'unixepoch', 'localtime')) AS last_visit_time_Converted FROM urls
-ORDER BY last_visit_time DESC;
+SELECT id,url,title,visit_count,typed_count,last_visit_time,hidden, (datetime((last_visit_time /1000000)-11644473600, 'unixepoch')) AS last_visit_time_UTC FROM urls
+ORDER BY last_visit_time DESC;;
 ```
