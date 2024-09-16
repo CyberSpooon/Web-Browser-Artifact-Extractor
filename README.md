@@ -14,5 +14,5 @@ NOTE: Since WebKit/Chrome records timestamps as the number of microseconds since
 
 ```
 SELECT id,url,title,visit_count,typed_count,last_visit_time,hidden, (datetime((last_visit_time /1000000)-11644473600, 'unixepoch')) AS last_visit_time_UTC FROM urls
-ORDER BY last_visit_time DESC;;
+ORDER BY id DESC;
 ```
